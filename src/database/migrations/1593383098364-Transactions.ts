@@ -21,7 +21,7 @@ export class Transactions1593378092497 implements MigrationInterface {
                     name: 'value',
                     type: 'numeric',
                     precision: 10,
-                    scale: 3
+                    scale: 2
 
                 },
                 {

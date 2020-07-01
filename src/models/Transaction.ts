@@ -1,6 +1,15 @@
 import { CreateDateColumn, UpdateDateColumn, Column, ManyToOne, JoinColumn, PrimaryGeneratedColumn, Entity } from "typeorm";
 import Category from "./Category";
 
+export class ColumnNumericTransformer {
+  to(data: number): number {
+    return data;
+  }
+  from(data: string): number {
+    return parseFloat(data);
+  }
+}
+
 @Entity('transactions')
 class Transaction {
 
@@ -13,7 +22,7 @@ class Transaction {
   @Column()
   type: 'income' | 'outcome';
 
-  @Column({ type: 'numeric', scale: 3, precision: 10 })
+  @Column({ type: 'numeric', scale: 2, precision: 10, transformer: new ColumnNumericTransformer() })
   value: number;
 
   @Column()
