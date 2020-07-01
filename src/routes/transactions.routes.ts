@@ -33,10 +33,10 @@ transactionsRouter.delete('/:id', async (request, response) => {
   return response.status(204).send();
 });
 
-transactionsRouter.post('/import', upload.single('file'), async (request, response) => {
-  const { file } = request;
+transactionsRouter.post('/import', upload.array('file'), async (request, response) => {
+  const { files, file } = request;
   var service = new ImportTransactionsService();
-  return response.status(200).json(await service.execute({ file }));
+  return response.status(200).json(await service.execute({ file, files }));
 });
 
 export default transactionsRouter;
